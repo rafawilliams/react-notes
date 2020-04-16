@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 export default class CreateUser extends Component {
 
@@ -28,14 +30,18 @@ export default class CreateUser extends Component {
 
     deleteUser = async (id) =>{
         
-       const res = await axios.delete(`http://localhost:3000/api/users/${id}`);
+       const res = await axios.delete(`http://localhost:4000/api/users/${id}`);
        this.getUsers();
+
+       toastr.success(res.data.message, 'User', {timeOut: 2000})
     }
 
     sendForm = async (e) =>{
         e.preventDefault();
         const res = await axios.post('http://localhost:4000/api/users',{username: this.state.username});
         this.getUsers();
+        
+        toastr.success(res.data.message, 'User', {timeOut: 2000});
 
         this.setState({
             username: ''
@@ -56,7 +62,7 @@ export default class CreateUser extends Component {
                                 onChange={this.onChangeUserName}/>
                             </div>
                             <div className="from-group">
-                                <button type="submit" className="from-control btn btn-primary">
+                                <button type="submit" className="btn btn-primary">
                                     Save
                                 </button>
                             </div>

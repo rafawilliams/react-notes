@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 //import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import './App.css';
+import './index.css';
 import Navigation from './components/Navigation';
 import CreateNote from './components/CreateNote';
 import CreateUser from './components/CreateUser';
